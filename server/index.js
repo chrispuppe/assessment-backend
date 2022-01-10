@@ -15,12 +15,12 @@ function randomReply(res, replyList) {
   res.status(200).send(randomMessage);
 }
 
-app.get("/api/compliment", (req, res) => {
-  const compliments = ["Gee, you're a smart cookie!",
-					 "Cool shirt!",
-					 "Your Javascript skills are stellar.",
-  ];
+const compliments = ["Gee, you're a smart cookie!",
+"Cool shirt!",
+"Your Javascript skills are stellar.",
+];
 
+app.get("/api/compliment", (req, res) => {
   // choose random compliment
   // let randomIndex = Math.floor(Math.random() * compliments.length);
   // let randomCompliment = compliments[randomIndex];
@@ -40,7 +40,22 @@ app.get("/api/fortune", (req, res) => {
 
   // choose random compliment
   randomReply(res, fortunes)
-  
 });
+
+function addNewCompliment(event){
+  event.preventDefault()
+  const textarea = "Test text"
+  const newComplimentText = document.querySelector('textarea').value
+  compliments.push(addNewCompliment)
+  console.log(compliments)
+}
+
+app.post("/api/compliment", (req, res) => {
+  compliments.push(req)
+  // let newChar = {...req.body, id}
+  // newChar.likes = newChar.likes.slice(0, 3)
+  // characters.unshift(newChar)
+  // res.status(200).send(characters)
+})
 
 app.listen(4000, () => console.log("Server running on 4000"));
