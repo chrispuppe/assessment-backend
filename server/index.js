@@ -43,19 +43,19 @@ app.get("/api/fortune", (req, res) => {
 });
 
 function addNewCompliment(event){
-  event.preventDefault()
-  const textarea = "Test text"
-  const newComplimentText = document.querySelector('textarea').value
-  compliments.push(addNewCompliment)
-  console.log(compliments)
+  console.log("Before", compliments)
+  const testCompliment = "Test text"
+  // const newComplimentText = document.querySelector('textarea').value
+  // compliments.push(testCompliment)
+  compliments.push(testCompliment)
+  console.log("After", compliments)
 }
 
+
+
 app.post("/api/compliment", (req, res) => {
-  compliments.push(req)
-  // let newChar = {...req.body, id}
-  // newChar.likes = newChar.likes.slice(0, 3)
-  // characters.unshift(newChar)
-  // res.status(200).send(characters)
+  console.log(res.body)
+  addNewCompliment()
 })
 
 app.listen(4000, () => console.log("Server running on 4000"));
