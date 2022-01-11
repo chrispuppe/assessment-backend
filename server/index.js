@@ -42,18 +42,19 @@ app.delete("/api/compliment", (req, res) => {
   for (let i = 0;i < compliments.length;i) {
     compliments.pop()
   }
-  console.log(compliments)
+  // console.log(compliments)
   res.status(200)
 })
 
 app.post("/api/compliment", (req, res) => {
-    console.log(req.body)
+    // console.log(req.body.value)
     // console.log("Before", compliments)
-    const testCompliment = req.body
+    const testCompliment = req.body.value
     // const newComplimentText = document.querySelector('textarea').value
     compliments.push(testCompliment)
-    console.log("After", compliments)
+    // console.log("After", compliments)
     res.status(200)
+    return
 })
 
 app.listen(4000, () => console.log("Server running on 4000"));

@@ -33,13 +33,15 @@
       complimentPostForms.forEach(form => {
           form.addEventListener('submit', (e) => {
               e.preventDefault()
-              const formData = e.target[0].value;
+              const formData = {"value": e.target[0].value}
 
               console.log(formData)
 
               axios
                   .post("http://localhost:4000/api/compliment/", formData)
                   .catch(console.error);
+
+                  e.target[0].value = ""
           })
       })
 
