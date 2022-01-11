@@ -6,14 +6,15 @@
   <body class="container">
     <button id="complimentButton">Get a compliment</button>
     <button id="fortuneButton">Get your fortune</button>
-  </p>
+    </p>
     <form class="compliment-post" >
       <div class="compliment-section">
           <textarea rows="3" name="compliment"></textarea>
           <button type="submit" class="button">Submit</button>
-     </div>
-   </form>
-
+      </div>
+    </form>
+    </p>
+    <button id="delete-compliments">Delete old compliments here</button>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
@@ -41,6 +42,11 @@
                   .catch(console.error);
           })
       })
+
+      const deleteAllCompliments = document.getElementById("delete-compliments")
+        .onclick = function () {
+          axios.delete("http://localhost:4000/api/compliment/")
+        }
 
       buttonReply("complimentButton", "http://localhost:4000/api/compliment/")
       buttonReply("fortuneButton", "http://localhost:4000/api/fortune/")

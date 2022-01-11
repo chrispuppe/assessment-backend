@@ -1,5 +1,7 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
+const router = express.Router();
 
 const app = express();
 
@@ -21,13 +23,7 @@ const compliments = ["Gee, you're a smart cookie!",
 ];
 
 app.get("/api/compliment", (req, res) => {
-  // choose random compliment
-  // let randomIndex = Math.floor(Math.random() * compliments.length);
-  // let randomCompliment = compliments[randomIndex];
-
-  // res.status(200).send(randomCompliment);
   randomReply(res, compliments)
-  
 });
 
 app.get("/api/fortune", (req, res) => {
@@ -42,20 +38,22 @@ app.get("/api/fortune", (req, res) => {
   randomReply(res, fortunes)
 });
 
-function addNewCompliment(event){
-  console.log("Before", compliments)
-  const testCompliment = "Test text"
-  // const newComplimentText = document.querySelector('textarea').value
-  // compliments.push(testCompliment)
-  compliments.push(testCompliment)
-  console.log("After", compliments)
-}
-
-
+app.delete("/api/compliment", (req, res) => {
+  for (let i = 0;i < compliments.length;i) {
+    compliments.pop()
+  }
+  console.log(compliments)
+  res.status(200)
+})
 
 app.post("/api/compliment", (req, res) => {
-  console.log(res.body)
-  addNewCompliment()
+    console.log(req.body)
+    // console.log("Before", compliments)
+    const testCompliment = req.body
+    // const newComplimentText = document.querySelector('textarea').value
+    compliments.push(testCompliment)
+    console.log("After", compliments)
+    res.status(200)
 })
 
 app.listen(4000, () => console.log("Server running on 4000"));
